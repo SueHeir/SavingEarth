@@ -1,0 +1,26 @@
+				
+				
+				Default Map
+				
+				if(iD2==10) {this.setColor(stone); this.setValue(10); }
+				if(iD2==15) {this.setColor(wheat); this.setValue(9);}
+				if(iD2==16) {this.setColor(wheat); this.setValue(12);  }
+				if(iD2==17) {this.setColor(brick); this.setValue(6);  }
+				if(iD2==18) {this.setColor(sheep); this.setValue(2);  }
+				if(iD2==19) {this.setColor(wood); this.setValue(9);  }
+				if(iD2==22) {this.setColor(wood); this.setValue(8);  }
+				if(iD2==23) {this.setColor(wood); this.setValue(11);  }
+				if(iD2==24) {this.setColor(desert); this.setValue(0);  }
+				if(iD2==25) {this.setColor(sheep); this.setValue(4);  }
+				if(iD2==26) {this.setColor(brick); this.setValue(10);  }
+				if(iD2==29) {this.setColor(brick); this.setValue(5);  }
+				if(iD2==30) {this.setColor(stone); this.setValue(3); }
+				if(iD2==31) {this.setColor(wheat); this.setValue(4);  }
+				if(iD2==32) {this.setColor(wood); this.setValue(3);  }
+				if(iD2==33) {this.setColor(stone); this.setValue(8);  }
+				if(iD2==37) {this.setColor(wheat); this.setValue(6);  }
+				if(iD2==38) {this.setColor(sheep); this.setValue(11);  }
+				if(iD2==39) {this.setColor(sheep); this.setValue(5);  }
+				
+				
+				

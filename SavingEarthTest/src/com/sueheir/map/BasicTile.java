@@ -109,6 +109,7 @@ import com.sueheir.other.InfoMouse;
 	
 			font = g.getFont();
 			font.drawString(XCenter-font.getWidth(Name)/2 +Map.screenslidex,YCenter-font.getHeight(Name)/2 +Map.screenslidey,""+Value,Color.black);
+			font.drawString(XCenter-font.getWidth(Name)/2 +Map.screenslidex,YCenter-font.getHeight(Name)/2 +Map.screenslidey,""+Value,Color.black);
 
 				
 				
