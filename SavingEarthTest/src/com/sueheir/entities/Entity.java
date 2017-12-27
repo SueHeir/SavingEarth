@@ -1,4 +1,4 @@
-package Entities;
+package com.sueheir.entities;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
