@@ -21,20 +21,25 @@ public class Map {
 	public static int screenslidey = 0;
 	public static int tileSize = 80;
 	public static int worldSize;
-	public static Tile[] tiles;
+	public static Tile[][] tiles;
 	
 	public static ArrayList<Tile> TileList;
 	
 	
 	public static void init(int ws) {
 		worldSize = ws;
-		tiles = new Tile[worldSize*worldSize];
+		tiles = new Tile[worldSize][worldSize];
+		TileList = new ArrayList<Tile>();
 		
-		for(int i=0;i<worldSize*worldSize;++i){
-			tiles[i] = new BasicTile();
+		for(int i=0;i<worldSize;++i){
+			for(int j=0;j<worldSize;++j){
+				tiles[j][i] = new BasicTile(j,i);
+				TileList.add(tiles[j][i]);
+				
+			}
 		}
 		
-		TileList = new ArrayList<Tile>(Arrays.asList(tiles));
+		
 		int k=0;
 		int j=0;
 		int i=0;

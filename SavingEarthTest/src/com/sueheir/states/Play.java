@@ -14,7 +14,7 @@ import com.sueheir.world.World;
 
 public class Play extends BasicGameState {
 
-	public boolean pause = false;
+	public static boolean DebugMode = false;
 		String string;
 	public Play(int state){
 		
@@ -36,7 +36,7 @@ public class Play extends BasicGameState {
 		Font f = g.getFont();
 		World.render(g);
 		
-		if(!pause) {
+		if(DebugMode) {
 			
 		g.drawString("X: "+ xpos + " Y: " + ypos, Window.width-f.getWidth("X: 1111 Y: 1111" )-5, 10);
 		}
@@ -53,7 +53,7 @@ public class Play extends BasicGameState {
 		
 		
 		
-		if(!pause){
+		if(!DebugMode){
 			xpos= Mouse.getX();
 			ypos = Mouse.getY();
 		
@@ -64,7 +64,7 @@ public class Play extends BasicGameState {
 	
 	public void keyPressed(int key, char code){
 		if(key == Input.KEY_ESCAPE){
-			pause = !pause;
+			DebugMode = !DebugMode;
 			
 		}
 		

@@ -14,6 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import com.sueheir.Window;
 import com.sueheir.other.InfoMouse;
+import com.sueheir.states.Play;
 
 
 
@@ -28,10 +29,16 @@ import com.sueheir.other.InfoMouse;
 		private Color color;
 		private String Name;
 		Font font;
-		private int Value;
+		private int Value, XCoord, YCoord;
 
 
 		
+		public BasicTile(int j, int i) {
+			XCoord = j;
+			YCoord = i;
+		}
+
+
 		public void setParamaters(float x, float y, int ID, int tileSize){
 			
 			XCenter=x;
@@ -109,12 +116,13 @@ import com.sueheir.other.InfoMouse;
 	
 			font = g.getFont();
 			font.drawString(XCenter-font.getWidth(Name)/2 +Map.screenslidex,YCenter-font.getHeight(Name)/2 +Map.screenslidey,""+Value,Color.black);
-			font.drawString(XCenter-font.getWidth(Name)/2 +Map.screenslidex,YCenter-font.getHeight(Name)/2 +Map.screenslidey,""+Value,Color.black);
-
-				
-				
+			
+			if(Play.DebugMode) {
+			font.drawString(XCenter-font.getWidth(Name)/2 +Map.screenslidex,YCenter-font.getHeight(Name)/2 + 16 +Map.screenslidey,XCoord+", "+YCoord,Color.black);			
+			}
 				hex.setLocation(XCenter +Map.screenslidex, YCenter +Map.screenslidey);
 				g.draw(hex);
+				
 
 			
 			if(hover){
@@ -128,9 +136,10 @@ import com.sueheir.other.InfoMouse;
 				g.setColor(Color.white);
 				
 			}
+		}
 			
 		
-		}
+		
 		
 		
 		
