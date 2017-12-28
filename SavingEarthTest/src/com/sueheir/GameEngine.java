@@ -31,7 +31,7 @@ public class GameEngine extends StateBasedGame{
 		gc.setShowFPS(Window.ShowFPS);
 		gc.setVSync(Window.VSYNC);
 
-//** Object to handle files (Pictures)
+//** Object to handle files (Pictures,Sounds,Sprites,etc.)
 		new Resources();
 		
 //** Initalization of states within Game
@@ -46,14 +46,14 @@ public class GameEngine extends StateBasedGame{
 	
 	public static void main(String[] arg){
 		
-//** is it an Applet? No IDK???
+//** is it an Applet? No IDK
 		_APPLET = false;
 		
 		AppGameContainer appgc;
 		try{
 			appgc = new AppGameContainer(new GameEngine(gamename));
 			
-//**  More Window Settings
+//**  More Window Settings, see Windows Class
 			appgc.setDisplayMode(Window.width, Window.height, Window.FULLSCREEN);
 			appgc.start();
 			

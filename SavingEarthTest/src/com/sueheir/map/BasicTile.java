@@ -15,6 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import com.sueheir.Window;
 import com.sueheir.other.InfoMouse;
 import com.sueheir.states.Play;
+import com.sueheir.world.World;
 
 
 
@@ -30,14 +31,11 @@ import com.sueheir.states.Play;
 		private String Name;
 		Font font;
 		private int Value, XCoord, YCoord;
-
-
 		
 		public BasicTile(int j, int i) {
 			XCoord = j;
 			YCoord = i;
 		}
-
 
 		public void setParamaters(float x, float y, int ID, int tileSize){
 			
@@ -57,10 +55,6 @@ import com.sueheir.states.Play;
 			hex.addPoint(-0.5f*tileSize*1.15f,0.866f*tileSize*1.15f);
 			
 			configureType(ID);
-			
-			
-			
-			
 		}
 		
 		private void configureType(int iD2) {
@@ -98,41 +92,34 @@ import com.sueheir.states.Play;
 				if(iD2==37) {this.setColor(wheat); this.setValue(6);  }
 				if(iD2==38) {this.setColor(sheep); this.setValue(11);  }
 				if(iD2==39) {this.setColor(sheep); this.setValue(5);  }
-				
-				
-				
-				
 			}
-			
 		}
-
-
+		
 		public void draw(Graphics g) {
 			
 				g.setColor(color);
-				g.fillOval(XCenter-R +Map.screenslidex, YCenter-R +Map.screenslidey, R*2, R*2);
+				g.fillOval(XCenter-R +World.screenslidex, YCenter-R +World.screenslidey, R*2, R*2);
 				g.setColor(Color.white);
-			
 	
 			font = g.getFont();
-			font.drawString(XCenter-font.getWidth(Name)/2 +Map.screenslidex,YCenter-font.getHeight(Name)/2 +Map.screenslidey,""+Value,Color.black);
+			font.drawString(XCenter-font.getWidth(Name)/2 +World.screenslidex,YCenter-font.getHeight(Name)/2 +World.screenslidey,""+Value,Color.black);
 			
 			if(Play.DebugMode) {
-			font.drawString(XCenter-font.getWidth(Name)/2 +Map.screenslidex,YCenter-font.getHeight(Name)/2 + 16 +Map.screenslidey,XCoord+", "+YCoord,Color.black);			
+			font.drawString(XCenter-font.getWidth(Name)/2 +World.screenslidex,YCenter-font.getHeight(Name)/2 + 16 +World.screenslidey,XCoord+", "+YCoord,Color.black);			
 			}
-				hex.setLocation(XCenter +Map.screenslidex, YCenter +Map.screenslidey);
+				hex.setLocation(XCenter +World.screenslidex, YCenter +World.screenslidey);
 				g.draw(hex);
 				
 
 			
 			if(hover){
 				g.setColor(Color.yellow);
-				g.drawOval(XCenter-2-R +Map.screenslidex, YCenter-2-R +Map.screenslidey, R*2+4, R*2+4);
+				g.drawOval(XCenter-2-R +World.screenslidex, YCenter-2-R +World.screenslidey, R*2+4, R*2+4);
 				g.setColor(Color.white);
 			}else if(selected){
 				
 				g.setColor(Color.green);
-				g.drawOval(XCenter-2-R +Map.screenslidex, YCenter-2-R +Map.screenslidey, R*2+4, R*2+4);
+				g.drawOval(XCenter-2-R +World.screenslidex, YCenter-2-R +World.screenslidey, R*2+4, R*2+4);
 				g.setColor(Color.white);
 				
 			}
@@ -145,8 +132,8 @@ import com.sueheir.states.Play;
 		
 		
 		public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-			XIntial = XCenter+Map.screenslidex;
-			YIntial = YCenter+Map.screenslidey;
+			XIntial = XCenter+World.screenslidex;
+			YIntial = YCenter+World.screenslidey;
 			
 			int xpos = InfoMouse.getX();
 			int ypos = InfoMouse.getY();
@@ -191,8 +178,8 @@ import com.sueheir.states.Play;
 				
 				
 				if(screenIsCentered == true){
-					Map.screenslidex= (int) -XCenter + Window.width/2;
-					Map.screenslidey= (int) -YCenter + Window.height/2;
+					World.screenslidex= (int) -XCenter + Window.width/2;
+					World.screenslidey= (int) -YCenter + Window.height/2;
 				}
 				
 				

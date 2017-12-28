@@ -10,6 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import com.sueheir.Window;
 import com.sueheir.other.InfoMouse;
+import com.sueheir.world.World;
 import com.sueheir.map.*;
 
 public class Player extends Entity {
@@ -37,22 +38,20 @@ public class Player extends Entity {
 	@Override
 	public void draw(Graphics g, Color color) {
 		font = g.getFont();
-		font.drawString(XCenter-font.getWidth(Name)/2 +Map.screenslidex,YCenter-font.getHeight(Name)/2 +Map.screenslidey,Name+" "+(ID+1),Color.white);
+		font.drawString(XCenter-font.getWidth(Name)/2 +World.screenslidex,YCenter-font.getHeight(Name)/2 +World.screenslidey,Name+" "+(ID+1),Color.white);
 
 		g.setColor(color);
-		g.drawOval(XCenter-R +Map.screenslidex, YCenter-R +Map.screenslidey, R*2, R*2);
+		g.drawOval(XCenter-R +World.screenslidex, YCenter-R +World.screenslidey, R*2, R*2);
 		g.setColor(Color.white);
-
-		
 		
 		if(hover){
 			g.setColor(Color.yellow);
-			g.drawOval(XCenter-2-R +Map.screenslidex, YCenter-2-R +Map.screenslidey, R*2+4, R*2+4);
+			g.drawOval(XCenter-2-R +World.screenslidex, YCenter-2-R +World.screenslidey, R*2+4, R*2+4);
 			g.setColor(Color.white);
 		}else if(selected){
 			
 			g.setColor(Color.green);
-			g.drawOval(XCenter-2-R +Map.screenslidex, YCenter-2-R +Map.screenslidey, R*2+4, R*2+4);
+			g.drawOval(XCenter-2-R +World.screenslidex, YCenter-2-R +World.screenslidey, R*2+4, R*2+4);
 			g.setColor(Color.white);
 			
 		}
@@ -61,8 +60,8 @@ public class Player extends Entity {
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		XIntial = XCenter+Map.screenslidex;
-		YIntial = YCenter+Map.screenslidey;
+		XIntial = XCenter+World.screenslidex;
+		YIntial = YCenter+World.screenslidey;
 		
 		int xpos = InfoMouse.getX();
 		int ypos = InfoMouse.getY();
@@ -105,8 +104,8 @@ public class Player extends Entity {
 			}
 			
 			if(screenIsCentered == true){
-				Map.screenslidex= (int) -XCenter + Window.width/2;
-				Map.screenslidey= (int) -YCenter + Window.height/2;
+				World.screenslidex= (int) -XCenter + Window.width/2;
+				World.screenslidey= (int) -YCenter + Window.height/2;
 			}
 			
 			

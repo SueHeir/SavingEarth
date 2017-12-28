@@ -24,6 +24,10 @@ public class Resources {
 	private static Map<String, ParticleSystem> particleSystems;
 	
 	public Resources(){
+		
+		/*
+		 * All Resources are loaded into HashMaps at startup
+		 */
 			
 		images = new HashMap<String, Image>();
 		sprites = new HashMap<String, SpriteSheet>();
@@ -54,10 +58,9 @@ public class Resources {
 		}
 		
 		
-		
-		
-		
-		
+/*
+ * I Don't remember how these getters work, they need to be look through		
+ */
 		
 	}
 	

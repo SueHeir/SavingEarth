@@ -34,7 +34,7 @@ public class InfoMouse {
 	public static int getX(){
 		return XPOS;
 	}
-	
+	// gives graphics coordinates not mouse coords
 	public static int getY(){
 		return Window.height-YPOS;
 		
