@@ -55,6 +55,8 @@ import com.sueheir.world.World;
 			hex.addPoint(-0.5f*tileSize*1.15f,0.866f*tileSize*1.15f);
 			//sets default map
 			configureType(ID);
+			
+			
 		}
 		
 		private void configureType(int iD2) {
