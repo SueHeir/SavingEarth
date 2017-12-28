@@ -35,5 +35,6 @@ public abstract class Tile {
 	public abstract void setID(int ID);
 	public abstract void setType(String Type);
 	public abstract void setColor(Color color);
+	public abstract void setName(String string);
 	
 }

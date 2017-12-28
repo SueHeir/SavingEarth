@@ -24,12 +24,10 @@ public class MapConditions {
 		if(Num==-1) {
 				Num = rand.nextInt(6);
 		}
-			
-		
 		if(Num==0) {
 			if(getcurrentWood()<getmaxWood()) {
 				setcurrentWood(getcurrentWood()+1);
-				x.setType("WOOD");
+				x.setName("WOOD");
 				return wood;
 			} else {
 				Num++;
@@ -38,7 +36,7 @@ public class MapConditions {
 		if(Num==1) {
 			if(getcurrentWheat()<getmaxWheat()) {
 				setcurrentWheat(getcurrentWheat());
-				x.setType("WHEAT");
+				x.setName("WHEAT");
 				return wheat;
 			} else {
 				Num++;
@@ -47,7 +45,7 @@ public class MapConditions {
 		if(Num==2) {
 			if(getcurrentStone()<getmaxStone()) {
 				setcurrentStone(getcurrentStone()+1);
-				x.setType("STONE");
+				x.setName("STONE");
 				return stone;
 			} else {
 				Num++;
@@ -56,7 +54,7 @@ public class MapConditions {
 		if(Num==3) {
 			if(getcurrentSheep()<getmaxSheep()) {
 				setcurrentSheep(getcurrentSheep()+1);
-				x.setType("SHEEP");
+				x.setName("SHEEP");
 				return sheep;
 			} else {
 				Num++;
@@ -65,7 +63,7 @@ public class MapConditions {
 		if(Num==4) {
 			if(getcurrentBrick()<getmaxBrick()) {
 				setcurrentBrick(getcurrentBrick() +1);
-				x.setType("BRICK");
+				x.setName("BRICK");
 				return brick;
 			} else {
 				Num++;
@@ -74,7 +72,7 @@ public class MapConditions {
 		if(Num==5){
 			if(getcurrentDesert()<getmaxDesert()) {
 				setcurrentDesert(getcurrentDesert()+1);
-				x.setType("DESERT");
+				x.setName("DESERT");
 				return desert;
 			} else {
 				Num=0;
@@ -82,13 +80,20 @@ public class MapConditions {
 		} else {
 			return createmap(x,-1);
 		}
-		
-		
-		return createmap(x,-1);
-			
+		return createmap(x,-1);	
 	}
-	
-
+	public static void reset() {
+		setcurrentWood(0);
+		setcurrentWheat(0);
+		setcurrentStone(0);
+		setcurrentSheep(0);
+		setcurrentBrick(0);
+		setcurrentDesert(0);
+		
+	}
+	/*
+	 * GETTERS
+	 */
 	public static int getcurrentWood(){
 		return currentWood;
 	}
@@ -107,7 +112,6 @@ public class MapConditions {
 	public static int getcurrentDesert(){
 		return currentDesert;
 	}
-	
 	
 	public static int getmaxWood(){
 		return maxWood;
@@ -128,8 +132,9 @@ public class MapConditions {
 		return maxDesert;
 	}
 	
-	
-	
+	/*
+	 * SETTERS
+	 */
 	public static void setcurrentWood(int set){
 		 currentWood = set;
 	}
@@ -149,16 +154,4 @@ public class MapConditions {
 		 currentDesert = set;
 	}
 
-
-	public static void reset() {
-		setcurrentWood(0);
-		setcurrentWheat(0);
-		setcurrentStone(0);
-		setcurrentSheep(0);
-		setcurrentBrick(0);
-		setcurrentDesert(0);
-		
-	}
-	
-	
 }

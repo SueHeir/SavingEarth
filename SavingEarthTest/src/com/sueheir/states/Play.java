@@ -21,7 +21,7 @@ public class Play extends BasicGameState {
 	public Play(int state){
 	}
 	
-	//** mapsize defines length and width of map (keep 7 until changing mapsize is implimented)
+	//** MapSize defines length and width of map (keep 7 until changing mapsize is implimented)
 	public static int mapsize = 7;
 	
 	//** Player count defines number of players (keep 4 for now)
