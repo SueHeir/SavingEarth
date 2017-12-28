@@ -194,7 +194,9 @@ import com.sueheir.world.World;
 		public String getType() {
 			return Type;
 		}
-
+		public String getName() {
+			return Name;
+		}
 		/*
 		 * SETTERS 
 		 */	

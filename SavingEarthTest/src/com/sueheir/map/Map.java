@@ -82,11 +82,14 @@ public class Map {
 	public static void radomizeMap() {
 	
 		MapConditions.reset();
+		
 	
 		for(Tile x: TileList){
 			if(x.getID() == 10  || (x.getID() >14 && x.getID()<20) || (x.getID() >21 && x.getID()<27) || (x.getID() >28 && x.getID()<34) || (x.getID() >36 && x.getID()<40) ) {
 				x.setType("LAND");
-				x.setColor(MapConditions.createmap(x,-1));
+				x.setColor(MapConditions.randomizeMapType(x,-1));
+				MapConditions.randomizeMapValues(x);
+				
 			}
 		}
 	}

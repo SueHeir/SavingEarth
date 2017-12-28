@@ -1,6 +1,8 @@
 package com.sueheir.map;
 
 import org.newdawn.slick.*;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 public class MapConditions {
@@ -17,8 +19,19 @@ public class MapConditions {
 	
 	static Random rand = new Random();
 	
+	
+	static int[] listofints = new int[] {2,3,3,4,4,5,5,6,6,8,8,9,9,10,10,11,11,12};
+	static Boolean[] listofbools = new Boolean[18];
+	
+	MapConditions(){
+		for(int i=0;i<18;i++) {
+			listofbools[i]=false;
+		}
+		
+	}
+	
 
-	public static Color createmap(Tile x, int help) {
+	public static Color randomizeMapType(Tile x, int help) {
 		int Num = help;
 		
 		if(Num==-1) {
@@ -78,10 +91,34 @@ public class MapConditions {
 				Num=0;
 			}
 		} else {
-			return createmap(x,-1);
+			return randomizeMapType(x,-1);
 		}
-		return createmap(x,-1);	
+		return randomizeMapType(x,-1);	
 	}
+	
+	public static void randomizeMapValues(Tile x) {
+		if(x.getType()=="WATER") {
+			return;
+		} else if(x.getName()=="DESERT") {
+			x.setValue(0);
+			return;
+		} else {
+			int Num = rand.nextInt(18);
+			if(listofbools[Num]==false) {
+				x.setValue(listofints[Num]);
+				listofbools[Num]= true;
+			} else {
+				randomizeMapValues(x);
+				return;
+			}
+		}
+			
+		}
+	
+	
+	
+	
+	
 	public static void reset() {
 		setcurrentWood(0);
 		setcurrentWheat(0);
@@ -89,6 +126,10 @@ public class MapConditions {
 		setcurrentSheep(0);
 		setcurrentBrick(0);
 		setcurrentDesert(0);
+		
+		for (int i=0; i<18;i++) {
+			listofbools[i]=false;
+		}
 		
 	}
 	/*

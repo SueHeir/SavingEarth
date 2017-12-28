@@ -24,7 +24,7 @@ public abstract class Tile {
 	public abstract float getR();
 	public abstract int getID();
 	public abstract String getType();
-	
+	public abstract String getName();
 	
 	
 	
@@ -33,8 +33,10 @@ public abstract class Tile {
 	public abstract void setY(float f);
 	public abstract void setR(int r);
 	public abstract void setID(int ID);
-	public abstract void setType(String Type);
+	public abstract void setType(String type);
 	public abstract void setColor(Color color);
 	public abstract void setName(String string);
+	public abstract void setValue(int value);
+
 	
 }
