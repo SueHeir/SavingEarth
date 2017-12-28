@@ -35,7 +35,7 @@ public class MapConditions {
 		}
 		if(Num==1) {
 			if(getcurrentWheat()<getmaxWheat()) {
-				setcurrentWheat(getcurrentWheat());
+				setcurrentWheat(getcurrentWheat()+1);
 				x.setName("WHEAT");
 				return wheat;
 			} else {

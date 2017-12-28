@@ -15,14 +15,10 @@ import com.sueheir.map.*;
 
 public class Player extends Entity {
 
-	
+	private boolean hover = false, selected = false, screenIsCentered = false, Alive;
 	private float XIntial,YIntial,XCenter,YCenter,R;
 	private int ID;
 	private String Name;
-	private boolean hover = false;
-	private boolean selected = false;
-	private boolean screenIsCentered = false;
-	private boolean Alive;
 	Font font;
 	
 	
