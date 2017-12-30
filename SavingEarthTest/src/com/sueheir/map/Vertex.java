@@ -17,7 +17,7 @@ public class Vertex {
 
 	private int XCoord, YCoord;
 	private float XIntial,YIntial,XCenter,YCenter,R;
-	private boolean hover = false, selected = false, screenIsCentered = false;
+	private boolean hover = false, selected = false, screenIsCentered = false, isFilled = false;
 	private Color color;
 	Font font;
 	
@@ -53,6 +53,9 @@ public class Vertex {
 			g.setColor(Color.green);
 			g.drawOval(XCenter-2-R +World.screenslidex, YCenter-2-R +World.screenslidey, R*2+4, R*2+4);
 			g.setColor(Color.white);
+		}
+		if(isFilled) {
+			g.fillOval(XCenter-2-R +World.screenslidex, YCenter-2-R +World.screenslidey, R*2-5, R*2-5);
 		}
 		
 		// Draws Debug Mode information
@@ -117,6 +120,16 @@ public class Vertex {
 	}
 	public float getY(){
 		return YCenter;
+	}
+
+	public void setIsFilled(boolean b) {
+		this.isFilled=b;
+		
+	}
+
+	public boolean getIsFilled() {
+		
+		return this.isFilled;
 	}
 
 	

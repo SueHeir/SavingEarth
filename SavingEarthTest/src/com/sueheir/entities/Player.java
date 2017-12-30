@@ -17,7 +17,7 @@ public class Player extends Entity {
 
 	private boolean hover = false, selected = false, screenIsCentered = false, Alive;
 	private float XIntial,YIntial,XCenter,YCenter,R;
-	private int ID;
+	private int ID, XCoord, YCoord;
 	private String Name;
 	Font font;
 	
@@ -29,51 +29,87 @@ public class Player extends Entity {
 			if(ID==1) {
 				XCenter=Map.vertexes[spawnX*2-1][spawnY+1].getX();
 				YCenter=Map.vertexes[spawnX*2-1][spawnY+1].getY();
+				Map.vertexes[spawnX*2-1][spawnY+1].setIsFilled(true);
+				XCoord=spawnX*2-1;
+				YCoord=spawnY+1;
 			}
 			if(ID==2) {
 				XCenter=Map.vertexes[spawnX*2][spawnY].getX();
 				YCenter=Map.vertexes[spawnX*2][spawnY].getY();
+				Map.vertexes[spawnX*2][spawnY].setIsFilled(true);
+				XCoord=spawnX*2;
+				YCoord=spawnY;
 			}
 			if(ID==3) {
 				XCenter=Map.vertexes[spawnX*2+1][spawnY].getX();
 				YCenter=Map.vertexes[spawnX*2+1][spawnY].getY();
+				Map.vertexes[spawnX*2+1][spawnY].setIsFilled(true);
+				XCoord=spawnX*2+1;
+				YCoord=spawnY;
 			}
 			if(ID==4) {
 				XCenter=Map.vertexes[spawnX*2+2][spawnY+1].getX();
 				YCenter=Map.vertexes[spawnX*2+2][spawnY+1].getY();
+				Map.vertexes[spawnX*2+2][spawnY+1].setIsFilled(true);
+				XCoord=spawnX*2+2;
+				YCoord=spawnY+1;
 			}
 			if(ID==5) {
 				XCenter=Map.vertexes[spawnX*2+1][spawnY+1].getX();
 				YCenter=Map.vertexes[spawnX*2+1][spawnY+1].getY();
+				Map.vertexes[spawnX*2+1][spawnY+1].setIsFilled(true);
+				XCoord=spawnX*2+1;
+				YCoord=spawnY+1;
 			}
 			if(ID==6) {
 				XCenter=Map.vertexes[spawnX*2][spawnY+1].getX();
 				YCenter=Map.vertexes[spawnX*2][spawnY+1].getY();
+				Map.vertexes[spawnX*2][spawnY+1].setIsFilled(true);
+				XCoord=spawnX*2;
+				YCoord=spawnY+1;
 			}
 		}else {
 			if(ID==1) {
 				XCenter=Map.vertexes[spawnX*2-1][spawnY].getX();
 				YCenter=Map.vertexes[spawnX*2-1][spawnY].getY();
+				Map.vertexes[spawnX*2-1][spawnY].setIsFilled(true);
+				XCoord=spawnX*2-1;
+				YCoord=spawnY;
 			}
 			if(ID==2) {
 				XCenter=Map.vertexes[spawnX*2][spawnY].getX();
 				YCenter=Map.vertexes[spawnX*2][spawnY].getY();
+				Map.vertexes[spawnX*2][spawnY].setIsFilled(true);
+				XCoord=spawnX*2;
+				YCoord=spawnY;
 			}
 			if(ID==3) {
 				XCenter=Map.vertexes[spawnX*2+1][spawnY].getX();
 				YCenter=Map.vertexes[spawnX*2+1][spawnY].getY();
+				Map.vertexes[spawnX*2+1][spawnY].setIsFilled(true);
+				XCoord=spawnX*2+1;
+				YCoord=spawnY;
 			}
 			if(ID==4) {
 				XCenter=Map.vertexes[spawnX*2+2][spawnY].getX();
 				YCenter=Map.vertexes[spawnX*2+2][spawnY].getY();
+				Map.vertexes[spawnX*2+2][spawnY].setIsFilled(true);
+				XCoord=spawnX*2+2;
+				YCoord=spawnY;
 			}
 			if(ID==5) {
 				XCenter=Map.vertexes[spawnX*2+1][spawnY+1].getX();
 				YCenter=Map.vertexes[spawnX*2+1][spawnY+1].getY();
+				Map.vertexes[spawnX*2+1][spawnY+1].setIsFilled(true);
+				XCoord=spawnX*2+1;
+				YCoord=spawnY+1;
 			}
 			if(ID==6) {
 				XCenter=Map.vertexes[spawnX*2][spawnY+1].getX();
 				YCenter=Map.vertexes[spawnX*2][spawnY+1].getY();
+				Map.vertexes[spawnX*2][spawnY+1].setIsFilled(true);
+				XCoord=spawnX*2;
+				YCoord=spawnY+1;
 			}
 		}
 		
@@ -110,6 +146,9 @@ public class Player extends Entity {
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		XCenter = Map.vertexes[XCoord][YCoord].getX();
+		YCenter = Map.vertexes[XCoord][YCoord].getY();
+		
 		XIntial = XCenter+World.screenslidex;
 		YIntial = YCenter+World.screenslidey;
 		
@@ -159,17 +198,71 @@ public class Player extends Entity {
 			}
 			
 			
-			if(input.isKeyDown(Input.KEY_W)){
-				
+			if(input.isKeyPressed(Input.KEY_W)){
+				if((XCoord & 2)==0) {
+					if((XCoord & 1)==0 &! Map.vertexes[XCoord-1][YCoord-1].getIsFilled()) {
+						Map.vertexes[XCoord][YCoord].setIsFilled(false);
+						XCoord--;
+						YCoord--;
+						Map.vertexes[XCoord][YCoord].setIsFilled(true);
+					} else if (!((XCoord & 1)==0) &! Map.vertexes[XCoord+1][YCoord-1].getIsFilled() ){
+						Map.vertexes[XCoord][YCoord].setIsFilled(false);
+						XCoord++;
+						YCoord--;
+						Map.vertexes[XCoord][YCoord].setIsFilled(true);
+					}
+				} else {
+					if((XCoord & 1)==0 &! Map.vertexes[XCoord-1][YCoord].getIsFilled()) {
+						Map.vertexes[XCoord][YCoord].setIsFilled(false);
+						XCoord--;
+						Map.vertexes[XCoord][YCoord].setIsFilled(true);
+					} else if (!((XCoord & 1)==0) &! Map.vertexes[XCoord+1][YCoord].getIsFilled()){
+						Map.vertexes[XCoord][YCoord].setIsFilled(false);
+						XCoord++;
+						Map.vertexes[XCoord][YCoord].setIsFilled(true);
+					}
+				}
 			}
-			if(input.isKeyDown(Input.KEY_S)){
+			if(input.isKeyPressed(Input.KEY_S)){
+				if((XCoord & 2)==0) {
+					if((XCoord & 1)==0 &! Map.vertexes[XCoord-1][YCoord].getIsFilled()) {
+						Map.vertexes[XCoord][YCoord].setIsFilled(false);
+						XCoord--;
+						Map.vertexes[XCoord][YCoord].setIsFilled(true);
+					} else if (!((XCoord & 1)==0) &! Map.vertexes[XCoord+1][YCoord].getIsFilled()){
+						Map.vertexes[XCoord][YCoord].setIsFilled(false);
+						XCoord++;
+						Map.vertexes[XCoord][YCoord].setIsFilled(true);
+					}
+				} else {
+					if((XCoord & 1)==0 &! Map.vertexes[XCoord-1][YCoord+1].getIsFilled()) {
+						Map.vertexes[XCoord][YCoord].setIsFilled(false);
+						XCoord--;
+						YCoord++;
+						Map.vertexes[XCoord][YCoord].setIsFilled(true);
+					} else if (!((XCoord & 1)==0) &! Map.vertexes[XCoord+1][YCoord+1].getIsFilled()){
+						Map.vertexes[XCoord][YCoord].setIsFilled(false);
+						XCoord++;
+						YCoord++;
+						Map.vertexes[XCoord][YCoord].setIsFilled(true);
+					}
+				}
 			
 			}
-			if(input.isKeyDown(Input.KEY_D)){
+			if(input.isKeyPressed(Input.KEY_D)){
+				if((XCoord & 1)==0 &!  Map.vertexes[XCoord+1][YCoord].getIsFilled()) {
+					Map.vertexes[XCoord][YCoord].setIsFilled(false);
+					XCoord++;
+					Map.vertexes[XCoord][YCoord].setIsFilled(true);
+				} 
 				
 			}
-			if(input.isKeyDown(Input.KEY_A)){
-				
+			if(input.isKeyPressed(Input.KEY_A)){
+				if(!((XCoord & 1)==0) &!  Map.vertexes[XCoord-1][YCoord].getIsFilled()) {
+					Map.vertexes[XCoord][YCoord].setIsFilled(false);
+					XCoord--;
+					Map.vertexes[XCoord][YCoord].setIsFilled(true);
+				}
 			}
 			
 			
@@ -198,6 +291,18 @@ public class Player extends Entity {
 	public float getY() {
 		
 		return YCenter;
+	}
+	
+	@Override
+	public int getXCoord() {
+		
+		return XCoord;
+	}
+
+	@Override
+	public int getYCoord() {
+		
+		return YCoord;
 	}
 
 	@Override
@@ -233,6 +338,18 @@ public class Player extends Entity {
 	@Override
 	public boolean isAlive() {
 		return Alive;
+	}
+
+	@Override
+	public void setXCoord(int x) {
+		this.XCoord=x;
+		
+	}
+
+	@Override
+	public void setYCoord(int y) {
+		this.YCoord=y;
+		
 	}
 
 	

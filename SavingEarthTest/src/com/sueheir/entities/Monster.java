@@ -84,4 +84,28 @@ public class Monster extends Entity {
 		
 	}
 
+	@Override
+	public int getXCoord() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getYCoord() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setXCoord(int x) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setYCoord(int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
