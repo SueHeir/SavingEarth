@@ -153,4 +153,12 @@ public class Map {
 		spawnlocation[0] = x;
 		spawnlocation[1] = y;
 	}
+	
+	public static Tile[] getTilesTouchingVertex(int xcoord,int ycoord) {
+		
+		
+		
+		return null;
+		
+	}
 }

@@ -24,6 +24,13 @@ public class Vertex {
 	public Vertex(int i, int j) {
 		XCoord = i;
 		YCoord = j;
+		
+		if(XCoord==0 || XCoord==13 ||YCoord==0 ||YCoord==7 ||
+				(YCoord==6 && (XCoord==1||XCoord==2||XCoord==3||XCoord==10||XCoord==11||XCoord==12)||
+				(YCoord==2 && (XCoord==1||XCoord==12))||
+				(YCoord==1 && (XCoord==3||XCoord==5||XCoord==8||XCoord==10)))) {
+			isFilled = true;
+		}
 	}
 	
 	public void setParamaters(float x, float y, int tileSize){
@@ -31,6 +38,8 @@ public class Vertex {
 		XCenter=x;
 		YCenter=y;
 		R = tileSize*0.25f;
+		
+		
 		
 	}
 
@@ -54,13 +63,14 @@ public class Vertex {
 			g.drawOval(XCenter-2-R +World.screenslidex, YCenter-2-R +World.screenslidey, R*2+4, R*2+4);
 			g.setColor(Color.white);
 		}
-		if(isFilled) {
-			g.fillOval(XCenter-2-R +World.screenslidex, YCenter-2-R +World.screenslidey, R*2-5, R*2-5);
-		}
+		
 		
 		// Draws Debug Mode information
 		if(Play.DebugMode) {
 			font.drawString(XCenter-font.getWidth(XCoord+", "+YCoord)/2 +World.screenslidex,YCenter-font.getHeight(XCoord+", "+YCoord)/2 + 16 +World.screenslidey,XCoord+", "+YCoord,Color.white);
+			if(isFilled) {
+				g.fillOval(XCenter-2-R +World.screenslidex, YCenter-2-R +World.screenslidey, R*2-5, R*2-5);
+			}
 		}
 	}
 	
