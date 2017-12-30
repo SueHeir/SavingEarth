@@ -22,10 +22,64 @@ public class Player extends Entity {
 	Font font;
 	
 	
-	public void setParamaters(int x, int y, int ID, String name, int tilesize ) {
-		XCenter=x;
-		YCenter=y;
-		R= tilesize*0.25f;
+	public void setParamaters( int ID, String name, int tilesize ) {
+		int spawnX=Map.spawnlocation[0];
+		int spawnY=Map.spawnlocation[1];
+		if((spawnX & 1)==1) {
+			if(ID==1) {
+				XCenter=Map.vertexes[spawnX*2-1][spawnY+1].getX();
+				YCenter=Map.vertexes[spawnX*2-1][spawnY+1].getY();
+			}
+			if(ID==2) {
+				XCenter=Map.vertexes[spawnX*2][spawnY].getX();
+				YCenter=Map.vertexes[spawnX*2][spawnY].getY();
+			}
+			if(ID==3) {
+				XCenter=Map.vertexes[spawnX*2+1][spawnY].getX();
+				YCenter=Map.vertexes[spawnX*2+1][spawnY].getY();
+			}
+			if(ID==4) {
+				XCenter=Map.vertexes[spawnX*2+2][spawnY+1].getX();
+				YCenter=Map.vertexes[spawnX*2+2][spawnY+1].getY();
+			}
+			if(ID==5) {
+				XCenter=Map.vertexes[spawnX*2+1][spawnY+1].getX();
+				YCenter=Map.vertexes[spawnX*2+1][spawnY+1].getY();
+			}
+			if(ID==6) {
+				XCenter=Map.vertexes[spawnX*2][spawnY+1].getX();
+				YCenter=Map.vertexes[spawnX*2][spawnY+1].getY();
+			}
+		}else {
+			if(ID==1) {
+				XCenter=Map.vertexes[spawnX*2-1][spawnY].getX();
+				YCenter=Map.vertexes[spawnX*2-1][spawnY].getY();
+			}
+			if(ID==2) {
+				XCenter=Map.vertexes[spawnX*2][spawnY].getX();
+				YCenter=Map.vertexes[spawnX*2][spawnY].getY();
+			}
+			if(ID==3) {
+				XCenter=Map.vertexes[spawnX*2+1][spawnY].getX();
+				YCenter=Map.vertexes[spawnX*2+1][spawnY].getY();
+			}
+			if(ID==4) {
+				XCenter=Map.vertexes[spawnX*2+2][spawnY].getX();
+				YCenter=Map.vertexes[spawnX*2+2][spawnY].getY();
+			}
+			if(ID==5) {
+				XCenter=Map.vertexes[spawnX*2+1][spawnY+1].getX();
+				YCenter=Map.vertexes[spawnX*2+1][spawnY+1].getY();
+			}
+			if(ID==6) {
+				XCenter=Map.vertexes[spawnX*2][spawnY+1].getX();
+				YCenter=Map.vertexes[spawnX*2][spawnY+1].getY();
+			}
+		}
+		
+			
+		
+		R= tilesize*.18f;
 		this.ID=ID;
 		Name = name;
 
@@ -34,7 +88,7 @@ public class Player extends Entity {
 	@Override
 	public void draw(Graphics g, Color color) {
 		font = g.getFont();
-		font.drawString(XCenter-font.getWidth(Name)/2 +World.screenslidex,YCenter-font.getHeight(Name)/2 +World.screenslidey,Name+" "+(ID+1),Color.white);
+		font.drawString(XCenter-font.getWidth(Name)/2 +World.screenslidex,YCenter-font.getHeight(Name)/2 +World.screenslidey,Name+" "+(ID),Color.white);
 
 		g.setColor(color);
 		g.drawOval(XCenter-R +World.screenslidex, YCenter-R +World.screenslidey, R*2, R*2);

@@ -86,6 +86,7 @@ public class MapConditions {
 			if(getcurrentDesert()<getmaxDesert()) {
 				setcurrentDesert(getcurrentDesert()+1);
 				x.setName("DESERT");
+				Map.setSpawn(x.getXCoord(), x.getYCoord());
 				return desert;
 			} else {
 				Num=0;
@@ -112,13 +113,8 @@ public class MapConditions {
 				return;
 			}
 		}
-			
-		}
-	
-	
-	
-	
-	
+	}
+		
 	public static void reset() {
 		setcurrentWood(0);
 		setcurrentWheat(0);

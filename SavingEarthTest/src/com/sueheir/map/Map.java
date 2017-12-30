@@ -18,17 +18,24 @@ public class Map {
 
 	//2d array of tile classes
 	public static Tile[][] tiles;
+	public static Vertex[][] vertexes;
 	
 	//added to 1d array for handling
 	public static ArrayList<Tile> TileList;
+	public static ArrayList<Vertex> VertexList;
+	
+	public static int[] spawnlocation = {3,3};
 	
 	
 	public static void init(int ws) {
+		
 		int worldSize = ws;
 		tiles = new Tile[worldSize][worldSize];
+		vertexes = new Vertex[worldSize*2][worldSize*2];
 		TileList = new ArrayList<Tile>();
+		VertexList = new ArrayList<Vertex>();
 	
-	//2D array size of MapSize (see play class)	
+	//FOR TILES 2D array size of MapSize (see play class)	
 		for(int i=0;i<worldSize;++i){
 			for(int j=0;j<worldSize;++j){
 				tiles[j][i] = new BasicTile(j,i);
@@ -36,7 +43,15 @@ public class Map {
 			}
 		}
 		
-		// Sets Location, ID tag, passes tileSize (from play class to basicTile class)
+	//FOR VERTEXES 2D array size of MapSize
+		for(int i=0;i<worldSize+1;++i){
+			for(int j=0;j<worldSize*2;++j){
+				vertexes[j][i] = new Vertex(j,i);
+				VertexList.add(vertexes[j][i]);
+			}
+		}
+		
+		//FOR TILES Sets Location, ID tag, passes tileSize (from play class to basicTile class)
 		int k=0, j=0, i=0;
 		for(Tile x: TileList) {
 			if((k & 1) == 0) {
@@ -51,12 +66,45 @@ public class Map {
 				j++;
 			}
 		}
+		/*
+		 * FOR VERTEXES 
+		 */
+		
+		k=0; j=0; i=0;
+		boolean rotate = true;
+		for(Vertex x: VertexList) {
+			if(rotate) {
+				if((k & 1) == 0) {
+					x.setParamaters(1.73f*Play.tileSize*k-0.5f*Play.tileSize*1.15f, 2.01f*Play.tileSize*j-0.866f*Play.tileSize*1.15f,  Play.tileSize);
+				} else {
+					x.setParamaters(1.73f*Play.tileSize*k-0.5f*Play.tileSize*1.15f, Play.tileSize*1f + 2.01f*Play.tileSize*j-0.866f*Play.tileSize*1.15f, Play.tileSize);
+				}
+				rotate = false;
+				
+			} else {
+				if((k & 1) == 0) {
+					x.setParamaters(1.73f*Play.tileSize*k+0.5f*Play.tileSize*1.15f, 2.01f*Play.tileSize*j-0.866f*Play.tileSize*1.15f,  Play.tileSize);
+				} else {
+					x.setParamaters(1.73f*Play.tileSize*k+0.5f*Play.tileSize*1.15f, Play.tileSize*1f + 2.01f*Play.tileSize*j-0.866f*Play.tileSize*1.15f, Play.tileSize);
+				}
+				rotate = true;
+				k++;i++;
+				if(k==worldSize) {
+					k=0;
+					j++;
+					
+				}
+			}
+		}
 	}
 	
 	public static void render(Graphics g) throws SlickException {
 		// Draws tile class
 		for(Tile x: TileList){
-			x.draw(g);
+			x.render(g);
+		}
+		for(Vertex x: VertexList) {
+			x.render(g);
 		}
 	}
 
@@ -73,7 +121,13 @@ public class Map {
 		for(Tile x: TileList){
 			x.update(gc, sbg, delta);
 		}
+		
+		//Update Tiles 
+		for(Vertex x: VertexList){
+			x.update(gc, sbg, delta);
+		}
 	}
+
 	
 	/*
 	 * Radomize map method, doesn't randomize Values yet
@@ -92,5 +146,11 @@ public class Map {
 				
 			}
 		}
+	}
+	
+	
+	public static void setSpawn(int x, int y) {
+		spawnlocation[0] = x;
+		spawnlocation[1] = y;
 	}
 }

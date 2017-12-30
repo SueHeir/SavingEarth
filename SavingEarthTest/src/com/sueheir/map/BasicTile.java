@@ -69,7 +69,7 @@ import com.sueheir.world.World;
 				this.setType("LAND");	
 				
 				//Default Catan Map colors, type and Values
-				if(iD2==10) {this.setColor(MapConditions.stone);this.setName("WOOD"); this.setValue(10); }
+				if(iD2==10) {this.setColor(MapConditions.stone);this.setName("STONE"); this.setValue(10); }
 				if(iD2==15) {this.setColor(MapConditions.wheat);this.setName("WHEAT"); this.setValue(9);}
 				if(iD2==16) {this.setColor(MapConditions.wheat);this.setName("WHEAT"); this.setValue(12);  }
 				if(iD2==17) {this.setColor(MapConditions.brick);this.setName("BRICK"); this.setValue(6);  }
@@ -94,7 +94,7 @@ import com.sueheir.world.World;
 		/*
 		 * Draws Tile
 		 */
-		public void draw(Graphics g) {
+		public void render(Graphics g) {
 			
 			// Draws Colored Circle in Center of Hexagon
 			g.setColor(color);
@@ -163,7 +163,8 @@ import com.sueheir.world.World;
 			if(selected){
 				if(input.isKeyDown(Input.KEY_C)){
 					screenIsCentered = true;
-				}		
+				}
+					
 				if(screenIsCentered == true){
 					World.screenslidex= (int) -XCenter + Window.width/2;
 					World.screenslidey= (int) -YCenter + Window.height/2;
@@ -176,6 +177,9 @@ import com.sueheir.world.World;
 		/*
 		 * GETTERS 
 		 */	
+		public  BasicTile getBasicTile() {
+			return this;
+		}
 		public boolean getIsSelected(){
 			return selected;
 		}
@@ -184,6 +188,12 @@ import com.sueheir.world.World;
 		}
 		public float getY(){
 			return YCenter;
+		}
+		public int getXCoord(){
+			return XCoord;
+		}
+		public int getYCoord(){
+			return YCoord;
 		}
 		public float getR(){
 			return R;

@@ -9,7 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public abstract class Entity {
 	
 	
-	public abstract void setParamaters(int x, int y, int ID, String string, int tilesize);
+	public abstract void setParamaters(int ID, String string, int tilesize);
 	public abstract void draw(Graphics g, Color color);
 	public abstract void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException;
 	

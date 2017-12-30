@@ -42,9 +42,7 @@ public class World {
 		int i=0;
 		for(Entity x: EntityList){
 			//X and Y set locations, this should be set up for players to spawn at spawn tile vertexes
-			int X = 100*i;
-			int Y = 10;
-			x.setParamaters(X, Y, i, "PLAYER"+(i+1), Play.tileSize);
+			x.setParamaters( i+1, "PLAYER ", Play.tileSize);
 			i++;
 		}
 	}

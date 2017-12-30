@@ -11,7 +11,7 @@ public abstract class Tile {
 	
 	
 	public abstract void setParamaters(float d, float e, int ID, int tileSize);
-	public abstract void draw(Graphics g);
+	public abstract void render(Graphics g);
 	
 
 	public abstract void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException;
@@ -21,6 +21,8 @@ public abstract class Tile {
 	
 	public abstract float getX();
 	public abstract float getY();
+	public abstract int getXCoord();
+	public abstract int getYCoord();
 	public abstract float getR();
 	public abstract int getID();
 	public abstract String getType();

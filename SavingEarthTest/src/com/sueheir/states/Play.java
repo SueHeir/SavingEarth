@@ -25,7 +25,7 @@ public class Play extends BasicGameState {
 	public static int mapsize = 7;
 	
 	//** Player count defines number of players (keep 4 for now)
-	public static int PlayerCount = 4;
+	public static int PlayerCount = 6;
 	
 	// Size of Board, hexagon, circle, player, and monsters are based off this valve
 		public static int tileSize = 80;

@@ -8,10 +8,6 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Monster extends Entity {
 
-	public void setParamaters(int x, int y, int ID, int tilesize) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void draw(Graphics g, Color color) {
@@ -81,8 +77,9 @@ public class Monster extends Entity {
 
 	}
 
+
 	@Override
-	public void setParamaters(int x, int y, int ID, String string, int tilesize) {
+	public void setParamaters(int ID, String string, int tilesize) {
 		// TODO Auto-generated method stub
 		
 	}
