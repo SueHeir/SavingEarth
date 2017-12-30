@@ -8,6 +8,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import com.sueheir.states.Menu;
 import com.sueheir.states.Play;
 import com.sueheir.world.World;
 
@@ -96,6 +97,8 @@ public class Map {
 				}
 			}
 		}
+		
+		
 	}
 	
 	public static void render(Graphics g) throws SlickException {
@@ -111,11 +114,6 @@ public class Map {
 	public static void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		//gets Input for events
 		Input input = gc.getInput();
-		
-		//When R is pressed, map tiles get randomized (error in wheat count)
-		if(input.isKeyPressed(Input.KEY_R)){
-			radomizeMap();
-		}
 		
 		//Update Tiles 
 		for(Tile x: TileList){

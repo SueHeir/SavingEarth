@@ -7,7 +7,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
 import com.sueheir.Window;
-
+import com.sueheir.gui.Gui;
 import com.sueheir.other.InfoMouse;
 import com.sueheir.world.World;
 
@@ -24,11 +24,8 @@ public class Play extends BasicGameState {
 	//** MapSize defines length and width of map (keep 7 until changing mapsize is implimented)
 	public static int mapsize = 7;
 	
-	//** Player count defines number of players (keep 4 for now)
-	public static int PlayerCount = 6;
-	
 	// Size of Board, hexagon, circle, player, and monsters are based off this valve
-		public static int tileSize = 80;
+		public static int tileSize = 75;
 	
 	//* Mouse coords used in debug mode
 	int xpos; 
@@ -39,8 +36,9 @@ public class Play extends BasicGameState {
 	 */
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		//* Initialization of World (Includes map, players, enemies, background images 
-		World.init(mapsize,PlayerCount);
+		World.init(mapsize);
 		// Initialization of GUI would go here
+		Gui.init();
 
 	}
 
@@ -54,7 +52,7 @@ public class Play extends BasicGameState {
 		//* Rendering of World (Includes map, players, enemies, background images)
 		World.render(g);
 		// Rendering of GUI would go here
-		
+		Gui.render(g);
 		
 		/*
 		 * Debug mode (found in other classes too)
@@ -76,11 +74,16 @@ public class Play extends BasicGameState {
 		InfoMouse.updateMouseInfo(gc, sbg, delta);
 		
 		//**used in debugmode to display mouse position
-		xpos = InfoMouse.getX();
-		ypos = InfoMouse.getY();
+		// xpos = InfoMouse.getX();
+		// ypos = InfoMouse.getY();
+		xpos = World.screenslidex;
+		ypos = World.screenslidey;
+		
 		
 		//* Updating of World (Includes map, players, enemies, background images)
 		World.update(gc, sbg, delta);
+		
+		Gui.update(gc, sbg, delta);
 
 		
 		

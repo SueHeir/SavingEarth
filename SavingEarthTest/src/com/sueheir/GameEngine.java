@@ -10,7 +10,7 @@ public class GameEngine extends StateBasedGame{
 	
 
 //**  Sets Name of Game
-	public static final String gamename = "Testing";
+	public static final String gamename = "WizardsChess";
 	
 //** I Don't Remember
 	public static boolean _APPLET = true;
@@ -38,7 +38,7 @@ public class GameEngine extends StateBasedGame{
 		this.getState(States.MENU).init(gc, this);
 		this.getState(States.PLAY).init(gc, this);
 		
-//** IDK
+//** Enters default state (See states class)
 		this.enterState(States.DEFAULT);
 		
 	}

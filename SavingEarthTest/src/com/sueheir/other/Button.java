@@ -22,17 +22,16 @@ public class Button {
 	private Font font;
 
 	
-	public void setParamaters(int x, int y, int width, int height, String text){
+	public void setParamaters(int x, int y, int width, int height){
 		
 		X=x;
 		Y=y;
 		Width=width;
 		Height=height;
-		string =  text;
 	}
 	
 	
-	public void box(Graphics g) throws SlickException {
+	public void box(Graphics g, String string) throws SlickException {
 		Font f = g.getFont();
 		font = f;
 		

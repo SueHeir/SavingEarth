@@ -21,20 +21,25 @@ public class World {
 	public static ArrayList<Entity> EntityList, NewEntityList;
 	
 	// Used for moving camara position;
-	public static int screenslidex = 0;
-	public static int screenslidey = 0;
+	public static int screenslidex = 320;
+	public static int screenslidey = -195;
 		
 	
-	public static void init(int worldsize, int playerCount) {
+	public static void init(int worldsize) {
 		
 		//map includes Tiles, vertexes not done, edges not done, 
 		Map.init(worldsize);
 	
 		
+	
+	}
+	
+	
+	public static void initalizePlayers(int playerCount) {
 		// all players monsters should extend entity class, and should be included in this array for handling
-		Entity[] entity = new Entity[Play.PlayerCount];
+		Entity[] entity = new Entity[playerCount];
 		
-		for(int i=0;i<Play.PlayerCount;++i){
+		for(int i=0;i<playerCount;++i){
 			entity[i] = new Player();
 		}
 		
@@ -45,6 +50,8 @@ public class World {
 			x.setParamaters( i+1, "PLAYER ", Play.tileSize);
 			i++;
 		}
+		
+		
 	}
 	
 
