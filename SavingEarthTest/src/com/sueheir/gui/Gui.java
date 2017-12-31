@@ -32,6 +32,13 @@ public class Gui {
 		g.drawString("Health "+ currentPlayer.getCurrentHealth(), 10, Window.height-30);
 		
 		
+		g.drawString(" Wood: "+ currentPlayer.getWood(), 150, Window.height-110);
+		g.drawString("Wheat: "+ currentPlayer.getWheat(), 150, Window.height-90);
+		g.drawString("Sheep: "+ currentPlayer.getSheep(), 150, Window.height-70);
+		g.drawString("Brick: "+ currentPlayer.getBrick(), 150, Window.height-50);
+		g.drawString("Stone: "+ currentPlayer.getstone(), 150, Window.height-30);
+		
+		
 	}
 	public static void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		NextTurnButton.updateButton(gc, sbg, delta);

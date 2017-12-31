@@ -20,7 +20,7 @@ public class Player extends Entity {
 	private static boolean firstPass=true;
 	private boolean Alive;
 	private float XIntial,YIntial,XCenter,YCenter,R;
-	private int ID, XCoord, YCoord, currentEnergy, maxEnergy=3, currentMana, maxMana=3, currentHealth, maxHealth=5;
+	private int ID, XCoord, YCoord, currentEnergy, maxEnergy=3, currentMana, maxMana=3, currentHealth, maxHealth=5, wood, wheat, sheep, brick, stone;
 	private String Name;
 	Font font;
 	
@@ -267,47 +267,29 @@ public class Player extends Entity {
 					currentEnergy--;
 				}
 			}
-			
-			
 		}
-		
-		
 	}
-
-	@Override
-	public boolean getIsSelected() {
 	
+	
+	/*
+	 * GETTERS
+	 */
+	public boolean getIsSelected() {
 		return selected;
 	}
-
-	
-	@Override
 	public float getX() {
-		
 		return XCenter;
 	}
-
-	@Override
 	public float getY() {
-		
 		return YCenter;
 	}
-	
-	@Override
 	public int getXCoord() {
-		
 		return XCoord;
 	}
-
-	@Override
 	public int getYCoord() {
-		
 		return YCoord;
 	}
-
-	@Override
 	public float getR() {
-		
 		return R;
 	}
 	public int getCurrentEnergy() {
@@ -320,90 +302,76 @@ public class Player extends Entity {
 	public int getCurrentHealth() {
 		return currentHealth;
 	}
-	
 	public int getMaxEnergy() {
 		return maxEnergy;
 	}
-	
 	public int getMaxMana() {
 		return maxMana;
 	}
 	public int getMaxHealth() {
 		return maxHealth;
 	}
+	public int getWood() {
+		return wood;
+	}
+	public int getWheat() {
+		return wheat;
+	}
+	public int getSheep() {
+		return sheep;
+	}
+	public int getBrick() {
+		return brick;
+	}
+	public int getstone() {
+		return stone;
+	}
 	
 	
-	
-	@Override
+	/*
+	 * SETTERS
+	 */
 	public void setIsSelected(boolean check) {
 		selected=check;
-		
 	}
-
-	@Override
 	public void setX(float x) {
 		XCenter=x;
-		
 	}
-
-	@Override
 	public void setY(float y) {
 		YCenter=y;
-		
 	}
-
-	@Override
 	public void setR(int r) {
 		R=r;
-		
 	}
-
-	@Override
 	public boolean isAlive() {
 		return Alive;
 	}
-
-	@Override
 	public void setXCoord(int x) {
 		this.XCoord=x;
-		
 	}
-
-	@Override
 	public void setYCoord(int y) {
 		this.YCoord=y;
-		
 	}
-	
 	public void setCurrentEnergy(int i) {
 		currentEnergy=i;
 	}
-	
 	public void setCurrentMana(int i) {
 		currentMana=i;
 	}
 	public void setCurrentHealth(int i) {
 		currentHealth=i;
 	}
-	
 	public void setMaxEnergy(int i) {
 		maxEnergy=i;
 	}
-	
 	public void setMaxMana(int i) {
 		maxMana=i;
 	}
 	public void setMaxHealth(int i) {
 		maxHealth=i;
 	}
-
 	public static void setFirstPass(boolean b) {
 		firstPass = b;
-		
 	}
-
-	
-
-	
 
 }
