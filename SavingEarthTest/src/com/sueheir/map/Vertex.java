@@ -48,9 +48,6 @@ public class Vertex {
 		font = g.getFont();
 		
 		// Draws Colored Circle in Center of Vertex
-		g.setColor(color);
-		g.drawOval(XCenter-R +World.screenslidex, YCenter-R +World.screenslidey, R*2, R*2);
-		g.setColor(Color.white);
 		
 		//Draw Hover yellow circle
 		if(hover){
@@ -70,7 +67,10 @@ public class Vertex {
 			font.drawString(XCenter-font.getWidth(XCoord+", "+YCoord)/2 +World.screenslidex,YCenter-font.getHeight(XCoord+", "+YCoord)/2 + 16 +World.screenslidey,XCoord+", "+YCoord,Color.white);
 			if(isFilled) {
 				g.fillOval(XCenter-2-R +World.screenslidex, YCenter-2-R +World.screenslidey, R*2-5, R*2-5);
-			}
+				g.setColor(color);
+				g.drawOval(XCenter-R +World.screenslidex, YCenter-R +World.screenslidey, R*2, R*2);
+				g.setColor(Color.white);
+		}
 		}
 	}
 	
@@ -109,7 +109,8 @@ public class Vertex {
 		if(selected){
 			if(input.isKeyDown(Input.KEY_C)){
 				screenIsCentered = true;
-			}		
+			}					
+			
 			if(screenIsCentered == true){
 				World.screenslidex= (int) -XCenter + Window.width/2;
 				World.screenslidey= (int) -YCenter + Window.height/2;
@@ -142,6 +143,12 @@ public class Vertex {
 		return this.isFilled;
 	}
 
+	public int getXCoord() {
+		return XCoord;
+	}
+	public int getYCoord() {
+		return YCoord;
+	}
 	
 }
 

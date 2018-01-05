@@ -20,7 +20,7 @@ public class Player extends Entity {
 	private static boolean firstPass=true;
 	private boolean Alive;
 	private float XIntial,YIntial,XCenter,YCenter,R;
-	private int ID, XCoord, YCoord, currentEnergy, maxEnergy=3, currentMana, maxMana=3, currentHealth, maxHealth=5, wood, wheat, sheep, brick, stone;
+	private int ID, XCoord, YCoord, currentEnergy, maxEnergy=3, currentMana, maxMana=3, currentHealth, maxHealth=5, wood=0, wheat=0, sheep=0, brick=0, stone=0;
 	private String Name;
 	Font font;
 	
@@ -127,7 +127,7 @@ public class Player extends Entity {
 	@Override
 	public void draw(Graphics g, Color color) {
 		font = g.getFont();
-		font.drawString(XCenter-font.getWidth(Name)/2 +World.screenslidex,YCenter-font.getHeight(Name)/2 +World.screenslidey,Name+" "+(ID),Color.white);
+		font.drawString(XCenter-font.getWidth(Name)/2 +World.screenslidex,YCenter-font.getHeight(Name)/2 +World.screenslidey,Name+"  "+(ID),Color.white);
 
 		g.setColor(color);
 		g.drawOval(XCenter-R +World.screenslidex, YCenter-R +World.screenslidey, R*2, R*2);
@@ -178,7 +178,7 @@ public class Player extends Entity {
 		}
 	
 		
-		
+	
 		if(selected){
 			
 			if(input.isKeyDown(Input.KEY_C)){
@@ -188,7 +188,6 @@ public class Player extends Entity {
 				World.screenslidex= (int) -XCenter + Window.width/2;
 				World.screenslidey= (int) -YCenter + Window.height/2;
 			}
-			
 			
 			
 			if(input.isKeyPressed(Input.KEY_W) &&  currentEnergy>0){
@@ -323,7 +322,7 @@ public class Player extends Entity {
 	public int getBrick() {
 		return brick;
 	}
-	public int getstone() {
+	public int getStone() {
 		return stone;
 	}
 	
@@ -373,5 +372,20 @@ public class Player extends Entity {
 	public static void setFirstPass(boolean b) {
 		firstPass = b;
 	}
-
+	public void setWood(int i) {
+		wood=i;
+	}
+	public void setWheat(int i) {
+		wheat=i;
+	}
+	public void setSheep(int i) {
+		sheep=i;
+	}
+	public void setBrick(int i) {
+		brick=i;
+	}
+	public void setStone(int i) {
+		stone=i;
+	}
+	
 }

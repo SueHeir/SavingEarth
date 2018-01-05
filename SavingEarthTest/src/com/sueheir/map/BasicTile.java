@@ -1,6 +1,8 @@
 package com.sueheir.map;
 
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
@@ -12,6 +14,7 @@ import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.state.StateBasedGame;
 
 import com.sueheir.Window;
+import com.sueheir.gui.Gui;
 import com.sueheir.other.InfoMouse;
 import com.sueheir.states.Play;
 import com.sueheir.world.World;
@@ -55,8 +58,6 @@ import com.sueheir.world.World;
 			hex.addPoint(-0.5f*tileSize*1.15f,0.866f*tileSize*1.15f);
 			//sets default map
 			configureType(ID);
-			
-			
 		}
 		
 		private void configureType(int iD2) {
@@ -164,6 +165,19 @@ import com.sueheir.world.World;
 				if(input.isKeyDown(Input.KEY_C)){
 					screenIsCentered = true;
 				}
+				
+				if(input.isKeyPressed(Input.KEY_G)) {
+					int X = Gui.currentPlayer.getXCoord();
+					int Y = Gui.currentPlayer.getYCoord();
+					if(Gui.currentPlayer.getCurrentEnergy()>0 && this.getType()=="LAND" &&
+							this.checkIfVertexIsAdjacent(X, Y)) {
+						if(this.getName()=="WOOD") 	{Gui.currentPlayer.setWood(Gui.currentPlayer.getWood()+1);Gui.currentPlayer.setCurrentEnergy(Gui.currentPlayer.getCurrentEnergy()-1);}
+						if(this.getName()=="WHEAT") {Gui.currentPlayer.setWheat(Gui.currentPlayer.getWheat()+1);Gui.currentPlayer.setCurrentEnergy(Gui.currentPlayer.getCurrentEnergy()-1);}
+						if(this.getName()=="STONE") {Gui.currentPlayer.setStone(Gui.currentPlayer.getStone()+1);Gui.currentPlayer.setCurrentEnergy(Gui.currentPlayer.getCurrentEnergy()-1);}
+						if(this.getName()=="SHEEP") {Gui.currentPlayer.setSheep(Gui.currentPlayer.getSheep()+1);Gui.currentPlayer.setCurrentEnergy(Gui.currentPlayer.getCurrentEnergy()-1);}
+						if(this.getName()=="BRICK") {Gui.currentPlayer.setBrick(Gui.currentPlayer.getBrick()+1);Gui.currentPlayer.setCurrentEnergy(Gui.currentPlayer.getCurrentEnergy()-1);}
+					}
+				}
 					
 				if(screenIsCentered == true){
 					World.screenslidex= (int) -XCenter + Window.width/2;
@@ -173,6 +187,55 @@ import com.sueheir.world.World;
 					screenIsCentered=false;
 			}
 		}
+		
+		public Boolean checkIfVertexIsAdjacent(int X, int Y) {
+			if((this.XCoord & 1)==1) {
+				if((X==this.XCoord*2-1 && Y==this.YCoord+1)||
+					(X==this.XCoord*2 && Y==this.YCoord)||
+					(X==this.XCoord*2+1 && Y==this.YCoord)||
+					(X==this.XCoord*2+2 && Y==this.YCoord+1)||
+					(X==this.XCoord*2+1 && Y==this.YCoord+1)||
+					(X==this.XCoord*2 && Y==this.YCoord+1)) {
+					return true;
+				}
+				
+			}else {
+				if((X==this.XCoord*2-1 && Y==this.YCoord)||
+					(X==this.XCoord*2 && Y==this.YCoord)||
+					(X==this.XCoord*2+1 && Y==this.YCoord)||
+					(X==this.XCoord*2+2 && Y==this.YCoord)||
+					(X==this.XCoord*2+1 && Y==this.YCoord+1)||
+					(X==this.XCoord*2 && Y==this.YCoord+1)) {
+						return true;
+					}
+			}
+			return false;
+			
+		}
+		
+		public ArrayList getAdjacentVertex() {
+			ArrayList<Vertex> list = new ArrayList<Vertex>();
+			
+			if((this.XCoord & 1)==1) {
+				list.add(Map.vertexes[this.XCoord*2-1][this.YCoord+1]);
+				list.add(Map.vertexes[this.XCoord*2][this.YCoord]);
+				list.add(Map.vertexes[this.XCoord*2+1][this.YCoord]);
+				list.add(Map.vertexes[this.XCoord*2+2][this.YCoord+1]);
+				list.add(Map.vertexes[this.XCoord*2+1][this.YCoord+1]);
+				list.add(Map.vertexes[this.XCoord*2][this.YCoord+1]);
+				
+			} else {
+				list.add(Map.vertexes[this.XCoord*2-1][this.YCoord]);
+				list.add(Map.vertexes[this.XCoord*2][this.YCoord]);
+				list.add(Map.vertexes[this.XCoord*2+1][this.YCoord]);
+				list.add(Map.vertexes[this.XCoord*2+2][this.YCoord]);
+				list.add(Map.vertexes[this.XCoord*2+1][this.YCoord+1]);
+				list.add(Map.vertexes[this.XCoord*2][this.YCoord+1]);
+			}
+			return list;
+			
+		}
+		
 		
 		/*
 		 * GETTERS 
@@ -207,6 +270,9 @@ import com.sueheir.world.World;
 		public String getName() {
 			return Name;
 		}
+		public int getValue(){
+			return Value;
+		}
 		/*
 		 * SETTERS 
 		 */	
@@ -237,6 +303,7 @@ import com.sueheir.world.World;
 		public void setType(String Type) {
 			this.Type=Type;
 		}
+
 }
 	
 

@@ -1,5 +1,7 @@
 package com.sueheir.map;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -27,7 +29,8 @@ public abstract class Tile {
 	public abstract int getID();
 	public abstract String getType();
 	public abstract String getName();
-	
+	public abstract int getValue();
+	public abstract Boolean checkIfVertexIsAdjacent(int X, int Y);
 	
 	
 	public abstract void setIsSelected(boolean check);
@@ -39,6 +42,6 @@ public abstract class Tile {
 	public abstract void setColor(Color color);
 	public abstract void setName(String string);
 	public abstract void setValue(int value);
-
+	public abstract ArrayList getAdjacentVertex();
 	
 }

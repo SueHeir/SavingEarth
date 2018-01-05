@@ -97,8 +97,6 @@ public class Map {
 				}
 			}
 		}
-		
-		
 	}
 	
 	public static void render(Graphics g) throws SlickException {
@@ -125,7 +123,6 @@ public class Map {
 			x.update(gc, sbg, delta);
 		}
 	}
-
 	
 	/*
 	 * Radomize map method, doesn't randomize Values yet

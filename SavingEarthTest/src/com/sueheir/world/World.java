@@ -2,6 +2,7 @@ package com.sueheir.world;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -11,8 +12,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import com.sueheir.entities.Entity;
+import com.sueheir.entities.Monster;
 import com.sueheir.entities.Player;
 import com.sueheir.map.Map;
+import com.sueheir.map.Tile;
+import com.sueheir.map.Vertex;
 import com.sueheir.states.Play;
 
 public class World {
@@ -89,5 +93,29 @@ public class World {
 		for(Entity x: EntityList){	
 			x.update(gc, sbg, delta);
 		}
+	}
+
+	public static int count;
+	public static void spawnMonster(int diceValue) {
+		ArrayList<Vertex> list = new ArrayList();
+		Random rand = new Random();
+		
+		
+		for(Tile x: Map.TileList) {
+			if(diceValue==x.getValue()) {
+				list.addAll(x.getAdjacentVertex());
+			}
+		}
+		int num = rand.nextInt(list.size());
+		if(!list.get(num).getIsFilled()) {
+			EntityList.add(new Monster(list.get(num).getXCoord(),list.get(num).getYCoord(),Play.tileSize ));
+			return;
+		} else {
+			count++;
+			if(count>12)return;
+			spawnMonster(diceValue);
+			
+		}
+		
 	}
 }
