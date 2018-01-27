@@ -22,14 +22,19 @@ public abstract class Entity {
 	public abstract float getR();
 	public abstract int getXCoord();
 	public abstract int getYCoord();
+	public abstract int getCurrentHealth();
+	public abstract int getMaxHealth();
+	public abstract String getName();
 	
 	
 	public abstract void setIsSelected(boolean check);
 	public abstract void setX(float f);
 	public abstract void setY(float f);
-	public abstract void setXCoord(int x);
-	public abstract void setYCoord(int y);
-	public abstract void setR(int r);
+	public abstract void setXCoord(int XCoord);
+	public abstract void setYCoord(int YCoord);
+	public abstract void setR(int R);
+	public abstract void setCurrentHealth(int health); 
+	public abstract void setMaxHealth(int maxHealth);
 	
 	public abstract boolean isAlive();
 	

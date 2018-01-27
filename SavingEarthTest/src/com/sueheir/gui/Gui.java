@@ -17,6 +17,7 @@ import com.sueheir.world.World;
 
 public class Gui {
 	static Button NextTurnButton = new Button();
+	
 	public static Player currentPlayer;
 	public static int currentPlayerID = 1;
 	public static int DiceValue = rollDice() + rollDice();

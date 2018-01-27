@@ -9,6 +9,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import com.sueheir.Window;
+import com.sueheir.entities.Entity;
 import com.sueheir.other.InfoMouse;
 import com.sueheir.states.Play;
 import com.sueheir.world.World;
@@ -107,9 +108,15 @@ public class Vertex {
 			hover=false;
 		}
 		if(selected){
-			if(input.isKeyDown(Input.KEY_C)){
-				screenIsCentered = true;
-			}					
+				
+			if(input.isKeyPressed(input.KEY_F)) {
+				if(World.getEntityAtVertex(XCoord, YCoord)!=null) {
+					Entity entity = World.getEntityAtVertex(XCoord, YCoord);
+						
+				
+				}
+			}
+			
 			
 			if(screenIsCentered == true){
 				World.screenslidex= (int) -XCenter + Window.width/2;

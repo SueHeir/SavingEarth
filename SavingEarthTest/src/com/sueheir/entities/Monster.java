@@ -4,10 +4,14 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import com.sueheir.Window;
+import com.sueheir.gui.Gui;
 import com.sueheir.map.Map;
+import com.sueheir.other.InfoMouse;
 import com.sueheir.world.World;
 
 public class Monster extends Entity {
@@ -15,8 +19,8 @@ public class Monster extends Entity {
 	private boolean hover = false, selected = false, screenIsCentered = false;
 	private boolean Alive;
 	private float XIntial,YIntial,XCenter,YCenter,R;
-	private int ID, XCoord, YCoord, currentHealth;
-	private String Name = "Monster";
+	private int ID, XCoord, YCoord, currentHealth, maxHealth;
+	private String Name = "MONSTER";
 	Font font;
 	
 
@@ -39,97 +43,138 @@ public class Monster extends Entity {
 	public void draw(Graphics g, Color color) {
 		font = g.getFont();
 		font.drawString(XCenter-font.getWidth(Name)/2 +World.screenslidex,YCenter-font.getHeight(Name)/2 +World.screenslidey,Name+" "+(ID),Color.white);
+		
 		g.setColor(color);
 		g.drawOval(XCenter-R +World.screenslidex, YCenter-R +World.screenslidey, R*2, R*2);
 		g.setColor(Color.white);
 		
+		//Draw Hover yellow circle
+		if(hover){
+			g.setColor(Color.yellow);
+			g.drawOval(XCenter-2-R +World.screenslidex, YCenter-2-R +World.screenslidey, R*2+4, R*2+4);
+			g.setColor(Color.white);
+		}else if(selected){
+		//Draws green Selected circle
+			g.setColor(Color.green);
+			g.drawOval(XCenter-2-R +World.screenslidex, YCenter-2-R +World.screenslidey, R*2+4, R*2+4);
+			g.setColor(Color.white);
+		}
 		
 	}
-
-	
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		// TODO Auto-generated method stub
+		XIntial = XCenter+World.screenslidex;
+		YIntial = YCenter+World.screenslidey;
+		
+		int xpos = InfoMouse.getX();
+		int ypos = InfoMouse.getY();
+		Input input = gc.getInput();
+		
+		float xd = XIntial-xpos;
+		float yd = YIntial-ypos;
+		
+		float distanceSquared = (xd * xd) + (yd * yd);
+		float radiusSquared = R*R ;
+		
+		if(selected && InfoMouse.getWasPressed() && distanceSquared>radiusSquared){
+			selected=false;
+			if(input.isKeyDown(Input.KEY_LSHIFT) || input.isKeyDown(Input.KEY_RSHIFT))
+				selected=true;
+		}
+		
+		if(distanceSquared<radiusSquared){
+			hover=true;
+			if(InfoMouse.getWasPressed()){
+				if(selected==false){
+					selected = true;
+				}else{
+					selected = false;
+				}
+			}
+		}else{
+			hover=false;
+		}
+		if(selected){
+			if(input.isKeyDown(Input.KEY_C)){
+				screenIsCentered = true;
+			}
+				
+			if(screenIsCentered == true){
+				World.screenslidex= (int) -XCenter + Window.width/2;
+				World.screenslidey= (int) -YCenter + Window.height/2;
+			}
+		}else {
+				screenIsCentered=false;
+		}
+		
 		
 	}
-
-	@Override
+	
+	/*
+	 * GETTERS
+	 */
 	public boolean getIsSelected() {
-		// TODO Auto-generated method stub
-		return false;
+		return selected;
 	}
-
-	@Override
 	public float getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return XCenter;
 	}
-
-	@Override
 	public float getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return YCenter;
 	}
-
-	@Override
-	public float getR() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int getXCoord() {
-		// TODO Auto-generated method stub
-		return 0;
+		return XCoord;
 	}
-
-	@Override
 	public int getYCoord() {
-		// TODO Auto-generated method stub
-		return 0;
+		return YCoord;
 	}
-
-	@Override
+	public float getR() {
+		return R;
+	}
+	public int getCurrentHealth() {
+		return currentHealth;
+	}
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+	public String getName() {
+		return Name;
+	}
+	
+	
+	
+	/*
+	 * SETTERS
+	 */
 	public void setIsSelected(boolean check) {
-		// TODO Auto-generated method stub
-		
+		selected=check;
 	}
-
-	@Override
-	public void setX(float f) {
-		// TODO Auto-generated method stub
-		
+	public void setX(float x) {
+		XCenter=x;
 	}
-
-	@Override
-	public void setY(float f) {
-		// TODO Auto-generated method stub
-		
+	public void setY(float y) {
+		YCenter=y;
 	}
-
-	@Override
-	public void setXCoord(int x) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setYCoord(int y) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void setR(int r) {
-		// TODO Auto-generated method stub
-		
+		R=r;
 	}
-
-	@Override
 	public boolean isAlive() {
-		// TODO Auto-generated method stub
-		return false;
+		return Alive;
 	}
+	public void setXCoord(int x) {
+		this.XCoord=x;
+	}
+	public void setYCoord(int y) {
+		this.YCoord=y;
+	}
+	
+	public void setCurrentHealth(int i) {
+		currentHealth=i;
+	}
+	public void setMaxHealth(int i) {
+		maxHealth=i;
+	}
+	
 
 }

@@ -67,6 +67,7 @@ public class Map {
 				j++;
 			}
 		}
+		
 		/*
 		 * FOR VERTEXES 
 		 */

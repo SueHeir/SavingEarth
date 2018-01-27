@@ -166,6 +166,10 @@ public class Player extends Entity {
 		float distanceSquared = (xd * xd) + (yd * yd);
 		float radiusSquared = R*R ;
 		
+		if(currentHealth<=0) {
+			this.Alive=false;
+		}
+		
 		if(Gui.currentPlayerID==ID) {
 			this.setIsSelected(true);
 				if (firstPass) {
@@ -267,6 +271,8 @@ public class Player extends Entity {
 				}
 			}
 		}
+		
+		
 	}
 	
 	
@@ -325,6 +331,10 @@ public class Player extends Entity {
 	public int getStone() {
 		return stone;
 	}
+	public String getName() {
+		return Name;
+	}
+	
 	
 	
 	/*
@@ -387,5 +397,6 @@ public class Player extends Entity {
 	public void setStone(int i) {
 		stone=i;
 	}
-	
+
+
 }

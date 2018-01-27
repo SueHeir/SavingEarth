@@ -25,8 +25,8 @@ public class World {
 	public static ArrayList<Entity> EntityList, NewEntityList;
 	
 	// Used for moving camara position;
-	public static int screenslidex = 320;
-	public static int screenslidey = -195;
+	public static int screenslidex = 385;
+	public static int screenslidey = -135;
 		
 	
 	public static void init(int worldsize) {
@@ -51,7 +51,7 @@ public class World {
 		int i=0;
 		for(Entity x: EntityList){
 			//X and Y set locations, this should be set up for players to spawn at spawn tile vertexes
-			x.setParamaters( i+1, "PLAYER ", Play.tileSize);
+			x.setParamaters( i+1, "PLAYER", Play.tileSize);
 			i++;
 		}
 		
@@ -92,6 +92,15 @@ public class World {
 		// draws entities 
 		for(Entity x: EntityList){	
 			x.update(gc, sbg, delta);
+			if(!x.isAlive()) {
+				if(x.getName()=="MONSTER") {
+					EntityList.remove(x);
+				} 
+				if(x.getName()=="PLAYER") {
+					x.setCurrentHealth(x.getMaxHealth());
+				}
+				
+			}
 		}
 	}
 
@@ -116,6 +125,17 @@ public class World {
 			spawnMonster(diceValue);
 			
 		}
+		
+	}
+	
+	public static Entity getEntityAtVertex(int x,int y) {
+		for(Entity x1: EntityList) {
+			if(x1.getXCoord()==x && x1.getYCoord()==y) {
+				return x1;
+			}
+			
+		}
+		return null;
 		
 	}
 }
